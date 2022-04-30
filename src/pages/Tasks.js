@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TaskModal } from "../components";
 import { useDispatch, useSelector } from "react-redux";
-import { getTasks } from "../redux";
+import { getTasks, deleteTask } from "../redux";
 import { Table, Form, Row, Col, Badge, Button } from "react-bootstrap";
 import { FaEdit, FaTrashAlt, FaPlus, FaFilter } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -87,7 +87,11 @@ const Tasks = () => {
     getTasksFromServer();
   };
 
-  const deleteTask = (id) => {};
+  const deleteTaskFromServer = (id) => {
+    const data = { id };
+    dispatch(deleteTask(data));
+    getTasksFromServer();
+  };
 
   return (
     <>
@@ -269,7 +273,7 @@ const Tasks = () => {
                                 {checkSixDayaHead(task.date) && (
                                   <div
                                     onClick={() => {
-                                      deleteTask(task.id);
+                                      deleteTaskFromServer(task.id);
                                     }}
                                   >
                                     <IconContext.Provider

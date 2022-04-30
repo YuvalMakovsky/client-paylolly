@@ -8,10 +8,16 @@ const TaskModal = ({ showModalFunc, showModal, isEdit, editValues }) => {
   const [show, setShow] = useState(showModal);
   const dispatch = useDispatch();
 
+  const convertDate = (date) => {
+    const [day, month, year] = date.toString().split("-");
+    const result = [year, month, day].join("-");
+    return new Date(result);
+  };
+
   const initialTask = {
     name: isEdit ? editValues.name : "",
     status: isEdit ? editValues.status : "",
-    date: new Date(),
+    date: isEdit ? convertDate(editValues.date) : new Date(),
     id: isEdit ? editValues.id : "",
   };
 
