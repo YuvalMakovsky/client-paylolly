@@ -35,7 +35,7 @@ export const getTasks = (filters) => {
         },
       });
       if (data.success === true) {
-        dispatch({ type: GET_TASKS_SUCCESS, payload: data.data.tasks });
+        dispatch({ type: GET_TASKS_SUCCESS, payload: data.data });
       } else {
         dispatch({ type: GET_TASKS_ERROR, payload: data.message });
       }

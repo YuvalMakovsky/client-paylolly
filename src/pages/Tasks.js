@@ -40,12 +40,11 @@ const Tasks = () => {
   const [filters, setFilter] = useState(filterState);
 
   useEffect(() => {
-    // getTaskFromServer();
+    getTasksFromServer();
   }, []);
 
-  const getTaskFromServer = () => {
-    filters.startDate = filters.startDate.toLocaleDateString();
-    filters.endDate = filters.endDate.toLocaleDateString();
+  const getTasksFromServer = () => {
+    console.log(filters);
     dispatch(getTasks(filters));
   };
 
@@ -85,7 +84,7 @@ const Tasks = () => {
   };
 
   const handleFilter = () => {
-    console.log(filters);
+    getTasksFromServer();
   };
 
   const deleteTask = (id) => {};
@@ -101,19 +100,23 @@ const Tasks = () => {
             editValues={values.editValues}
           />
         )}
+        {/* total tags */}
         <Col lg={1} className="text-center"></Col>
         <Col lg={10} className="text-center">
           <Row className="mt-2">
             <Col lg={4}>
               <h6>
-                Total taks <Badge bg="secondary">{tasks.length}</Badge>
+                Total taks{" "}
+                <Badge bg="secondary">{tasks.length ? tasks.length : 0}</Badge>
               </h6>
             </Col>
             <Col lg={4}>
               <h6>
                 Task Remmining{" "}
                 <Badge bg="secondary">
-                  {tasks.filter((task) => task.status !== "completed").length}
+                  {tasks.length
+                    ? tasks.filter((task) => task.status !== "completed").length
+                    : 0}
                 </Badge>
               </h6>
             </Col>
@@ -122,11 +125,15 @@ const Tasks = () => {
                 Task Completed{" "}
                 <Badge bg="secondary">
                   {" "}
-                  {tasks.filter((task) => task.status === "completed").length}
+                  {tasks.length
+                    ? tasks.filter((task) => task.status === "completed").length
+                    : 0}
                 </Badge>
               </h6>
             </Col>
           </Row>
+          {/* end total tags */}
+          {/* start filters */}
           <Row className="mt-3">
             <Col lg={3}>
               <Form.Group>
@@ -144,7 +151,7 @@ const Tasks = () => {
               {" "}
               <Form.Group>
                 <Form.Select name="filter-select" onChange={filterStatus}>
-                  <option>Filter By Status:</option>
+                  <option value="">Filter By Status:</option>
                   <option value="not started">Not Started</option>
                   <option value="in progress">In Progress</option>
                   <option value="completed">Completed</option>
@@ -157,7 +164,7 @@ const Tasks = () => {
                 <DatePickerComp
                   label=""
                   handleTime={filterStartDate}
-                  date={filters.startDate}
+                  date={new Date(filters.startDate)}
                 />
               </Form.Group>
             </Col>
@@ -167,7 +174,7 @@ const Tasks = () => {
                 <DatePickerComp
                   label=""
                   handleTime={filterEndDate}
-                  date={filters.endDate}
+                  date={new Date(filters.endDate)}
                 />
               </Form.Group>
             </Col>
@@ -194,7 +201,8 @@ const Tasks = () => {
               </Button>{" "}
             </Col>
           </Row>
-
+          {/* end filters */}
+          {/* start table */}
           <Row className="mt-3">
             <Table striped bordered hover>
               <thead className="text-center">
@@ -306,6 +314,7 @@ const Tasks = () => {
         </Col>
         <Col lg={1} className="text-center"></Col>
       </Row>
+      {/* end table */}
     </>
   );
 };
