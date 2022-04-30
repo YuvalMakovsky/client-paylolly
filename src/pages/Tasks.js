@@ -44,7 +44,6 @@ const Tasks = () => {
   }, []);
 
   const getTasksFromServer = () => {
-    console.log(filters);
     dispatch(getTasks(filters));
   };
 
@@ -53,6 +52,7 @@ const Tasks = () => {
       setValue({ ...values, showModal: true });
     } else {
       setValue({ ...initialState });
+      getTasksFromServer();
     }
   };
 

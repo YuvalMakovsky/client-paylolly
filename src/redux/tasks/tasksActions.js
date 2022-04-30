@@ -59,7 +59,7 @@ export const createTask = (task) => {
         },
       });
       if (data.success === true) {
-        dispatch({ type: CREATE_TASKS_SUCCESS, payload: data.data.tasks });
+        dispatch({ type: CREATE_TASKS_SUCCESS, payload: data.data });
       } else {
         dispatch({ type: CREATE_TASKS_ERROR, payload: data.message });
       }
@@ -83,7 +83,7 @@ export const updateTask = (task) => {
         },
       });
       if (data.success === true) {
-        dispatch({ type: UPDATE_TASKS_SUCCESS, payload: data.data.tasks });
+        dispatch({ type: UPDATE_TASKS_SUCCESS, payload: data.data });
       } else {
         dispatch({ type: UPDATE_TASKS_ERROR, payload: data.message });
       }
@@ -107,7 +107,7 @@ export const deleteTask = (task) => {
         },
       });
       if (data.success === true) {
-        dispatch({ type: DELETE_TASKS_SUCCESS, payload: data.data.tasks });
+        dispatch({ type: DELETE_TASKS_SUCCESS, payload: data.data });
       } else {
         dispatch({ type: DELETE_TASKS_ERROR, payload: data.message });
       }

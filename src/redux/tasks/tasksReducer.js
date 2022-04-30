@@ -24,12 +24,16 @@ const reducer = (state, action) => {
       return { ...state, isLoading: true };
 
     case GET_TASKS_SUCCESS:
+      return {
+        ...state,
+        tasks: action.payload,
+        isLoading: false,
+      };
     case CREATE_TASKS_SUCCESS:
     case UPDATE_TASKS_SUCCESS:
     case DELETE_TASKS_SUCCESS:
       return {
         ...state,
-        tasks: action.payload,
         isLoading: false,
       };
 

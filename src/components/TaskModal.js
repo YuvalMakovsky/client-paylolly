@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { DatePickerComp } from "../components";
+import { useDispatch } from "react-redux";
+import { createTask } from "../redux";
 
 const TaskModal = ({ showModalFunc, showModal, isEdit, editValues }) => {
   const [show, setShow] = useState(showModal);
+  const dispatch = useDispatch();
 
   const initialTask = {
     name: isEdit ? editValues.name : "",
     status: isEdit ? editValues.status : "",
     date: new Date(),
+    id: isEdit ? editValues.id : "",
   };
 
   const [task, setTask] = useState(initialTask);
@@ -38,6 +42,8 @@ const TaskModal = ({ showModalFunc, showModal, isEdit, editValues }) => {
     if (!task.name || !task.status || !task.date) {
       return;
     }
+    dispatch(createTask(task));
+    showModalFunc();
   };
 
   return (
@@ -51,7 +57,7 @@ const TaskModal = ({ showModalFunc, showModal, isEdit, editValues }) => {
               <Form.Control
                 type="text"
                 name="name"
-                value={isEdit ? task.name : ""}
+                value={task.name}
                 placeholder="Enter Task Name:"
                 autoFocus
                 onChange={handleName}
