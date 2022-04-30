@@ -139,70 +139,76 @@ const Tasks = () => {
           {/* end total tags */}
           {/* start filters */}
           <Row className="mt-3">
-            <Col lg={3}>
-              <Form.Group>
-                <Form.Control
-                  type="text"
-                  name="filterName"
-                  onChange={filterName}
-                  placeholder="Filter By Name"
-                  autoFocus
-                />
-              </Form.Group>
-            </Col>
+            <Col lg={10}>
+              <Row>
+                <Col lg={3}>
+                  <Form.Group>
+                    <Form.Control
+                      type="text"
+                      value={filters.name}
+                      name="filterName"
+                      onChange={filterName}
+                      placeholder="Filter By Name"
+                      autoFocus
+                    />
+                  </Form.Group>
+                </Col>
 
-            <Col lg={3}>
-              {" "}
-              <Form.Group>
-                <Form.Select name="filter-select" onChange={filterStatus}>
-                  <option value="">Filter By Status:</option>
-                  <option value="not started">Not Started</option>
-                  <option value="in progress">In Progress</option>
-                  <option value="completed">Completed</option>
-                </Form.Select>
-              </Form.Group>
+                <Col lg={3}>
+                  {" "}
+                  <Form.Group>
+                    <Form.Select name="filter-select" onChange={filterStatus}>
+                      <option value="">Filter By Status:</option>
+                      <option value="not started">Not Started</option>
+                      <option value="in progress">In Progress</option>
+                      <option value="completed">Completed</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+                <Col lg={3}>
+                  {" "}
+                  <Form.Group>
+                    <DatePickerComp
+                      label=""
+                      handleTime={filterStartDate}
+                      date={new Date(filters.startDate)}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col lg={3}>
+                  {" "}
+                  <Form.Group>
+                    <DatePickerComp
+                      label=""
+                      handleTime={filterEndDate}
+                      date={new Date(filters.endDate)}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
             </Col>
-            <Col lg={3}>
-              {" "}
-              <Form.Group>
-                <DatePickerComp
-                  label=""
-                  handleTime={filterStartDate}
-                  date={new Date(filters.startDate)}
-                />
-              </Form.Group>
-            </Col>
-            <Col lg={3}>
-              {" "}
-              <Form.Group>
-                <DatePickerComp
-                  label=""
-                  handleTime={filterEndDate}
-                  date={new Date(filters.endDate)}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={10}></Col>
-            <Col className="d-flex justify-content-end" lg={2}>
-              {" "}
-              <Button
-                variant="primary"
-                className="d-flex"
-                onClick={handleFilter}
-              >
-                Filter{" "}
-                <IconContext.Provider
-                  value={{
-                    className: "ms-2",
-                  }}
-                >
-                  <div>
-                    <FaFilter />
-                  </div>
-                </IconContext.Provider>{" "}
-              </Button>{" "}
+            <Col lg={2}>
+              <Row>
+                <Col className="d-flex justify-content-end" lg={12}>
+                  {" "}
+                  <Button
+                    variant="primary"
+                    className="d-flex"
+                    onClick={handleFilter}
+                  >
+                    Filter{" "}
+                    <IconContext.Provider
+                      value={{
+                        className: "ms-2",
+                      }}
+                    >
+                      <div>
+                        <FaFilter />
+                      </div>
+                    </IconContext.Provider>{" "}
+                  </Button>{" "}
+                </Col>
+              </Row>
             </Col>
           </Row>
           {/* end filters */}
