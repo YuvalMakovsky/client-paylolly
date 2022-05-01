@@ -17,9 +17,8 @@ const Tasks = () => {
     const newDate = moment(date, "DD-MM-YYYY");
     if (newDate.diff(today, "days") >= 6) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   };
 
   const initialState = {

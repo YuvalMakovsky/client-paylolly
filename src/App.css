@@ -28,7 +28,11 @@
 .withPointer {
   cursor: pointer !important;
 }
-
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black !important;
+  opacity: 1; /* Firefox */
+}
 @keyframes spin {
   from {
     transform: rotate(0deg);

@@ -42,7 +42,7 @@ const Header = () => {
           </Nav>
           {user ? (
             <Nav>
-              <NavDropdown title={user && user.usr_name}>
+              <NavDropdown title={user && user.name}>
                 <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
               </NavDropdown>
             </Nav>

@@ -8,7 +8,6 @@ import _ from "lodash";
 import Cookies from "js-cookie";
 import { FaSpinner } from "react-icons/fa";
 import { FormRow } from "../components";
-import { Field, ErrorMessage } from "formik";
 
 const Register = () => {
   const dispatch = useDispatch();

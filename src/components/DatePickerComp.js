@@ -2,7 +2,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React from "react";
 import { Form } from "react-bootstrap";
-import moment from "moment";
 
 const DatePickerComp = ({ label, handleTime, date }) => {
   return (
